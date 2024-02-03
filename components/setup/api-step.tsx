@@ -18,6 +18,7 @@ interface APIStepProps {
   perplexityAPIKey: string
   useAzureOpenai: boolean
   openrouterAPIKey: string
+  llamaIndexAPIKey: string
   onOpenrouterAPIKeyChange: (value: string) => void
   onOpenaiAPIKeyChange: (value: string) => void
   onOpenaiOrgIDChange: (value: string) => void
@@ -32,6 +33,7 @@ interface APIStepProps {
   onMistralAPIKeyChange: (value: string) => void
   onPerplexityAPIKeyChange: (value: string) => void
   onUseAzureOpenaiChange: (value: boolean) => void
+  onLlamaIndexAPIKeyChange: (value: string) => void // Add the corresponding change handler
 }
 
 export const APIStep: FC<APIStepProps> = ({
@@ -49,6 +51,7 @@ export const APIStep: FC<APIStepProps> = ({
   perplexityAPIKey,
   openrouterAPIKey,
   useAzureOpenai,
+  llamaIndexAPIKey,
   onOpenaiAPIKeyChange,
   onOpenaiOrgIDChange,
   onAzureOpenaiAPIKeyChange,
@@ -62,7 +65,8 @@ export const APIStep: FC<APIStepProps> = ({
   onMistralAPIKeyChange,
   onPerplexityAPIKeyChange,
   onUseAzureOpenaiChange,
-  onOpenrouterAPIKeyChange
+  onOpenrouterAPIKeyChange,
+  onLlamaIndexAPIKeyChange
 }) => {
   return (
     <>
@@ -217,10 +221,19 @@ export const APIStep: FC<APIStepProps> = ({
         <Label>OpenRouter API Key</Label>
 
         <Input
-          placeholder="OpenRouter API Key"
+          placeholder="Llama Index API Key"
           type="password"
           value={openrouterAPIKey}
           onChange={e => onOpenrouterAPIKeyChange(e.target.value)}
+        />
+      </div>
+      <div className="space-y-1">
+        <Label>Llama Index API Key</Label>
+        <Input
+          placeholder="Llama Index API Key"
+          type="password"
+          value={llamaIndexAPIKey}
+          onChange={e => onLlamaIndexAPIKeyChange(e.target.value)}
         />
       </div>
     </>
