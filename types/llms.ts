@@ -6,6 +6,7 @@ export type LLMID =
   | AnthropicLLMID
   | MistralLLMID
   | PerplexityLLMID
+  | LLamaIndexLLMID
 
 // OpenAI Models (UPDATED 1/29/24)
 export type OpenAILLMID =
@@ -41,6 +42,9 @@ export type PerplexityLLMID =
   | "llama-2-70b-chat" // Llama2 70B Chat
   | "codellama-34b-instruct" // CodeLlama 34B Instruct
   | "codellama-70b-instruct" // CodeLlama 70B Instruct
+
+// LLAMA Index Models
+export type LLamaIndexLLMID = "LLAMA-Parse"
 
 export interface LLM {
   modelId: LLMID
