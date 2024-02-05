@@ -59,6 +59,7 @@ export default function SetupPage() {
   const [mistralAPIKey, setMistralAPIKey] = useState("")
   const [perplexityAPIKey, setPerplexityAPIKey] = useState("")
   const [openrouterAPIKey, setOpenrouterAPIKey] = useState("")
+  const [llamaIndexAPIKey, setLlamaIndexAPIKey] = useState("")
 
   useEffect(() => {
     ;(async () => {
@@ -131,6 +132,7 @@ export default function SetupPage() {
       mistral_api_key: mistralAPIKey,
       perplexity_api_key: perplexityAPIKey,
       openrouter_api_key: openrouterAPIKey,
+      llama_index_api_key: llamaIndexAPIKey,
       use_azure_openai: useAzureOpenai,
       azure_openai_api_key: azureOpenaiAPIKey,
       azure_openai_endpoint: azureOpenaiEndpoint,
@@ -201,6 +203,7 @@ export default function SetupPage() {
               googleGeminiAPIKey={googleGeminiAPIKey}
               mistralAPIKey={mistralAPIKey}
               perplexityAPIKey={perplexityAPIKey}
+              llamaIndexAPIKey={llamaIndexAPIKey}
               useAzureOpenai={useAzureOpenai}
               onOpenaiAPIKeyChange={setOpenaiAPIKey}
               onOpenaiOrgIDChange={setOpenaiOrgID}
@@ -217,6 +220,7 @@ export default function SetupPage() {
               onUseAzureOpenaiChange={setUseAzureOpenai}
               openrouterAPIKey={openrouterAPIKey}
               onOpenrouterAPIKeyChange={setOpenrouterAPIKey}
+              onLlamaIndexAPIKeyChange={setLlamaIndexAPIKey}
             />
           </StepContainer>
         )

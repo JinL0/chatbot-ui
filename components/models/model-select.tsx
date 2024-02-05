@@ -79,7 +79,16 @@ export const ModelSelect: FC<ModelSelectProps> = ({
     })),
     ...availableHostedModels,
     ...availableLocalModels,
-    ...availableOpenRouterModels
+    ...availableOpenRouterModels,
+    // Directly adding the LLAMA Parse model to the list
+    {
+      modelId: "LLAMA-Parse" as LLMID, // Ensure this matches the type definition for LLMID
+      modelName: "LLAMA Parse",
+      provider: "LLAMA Index",
+      hostedId: "llama-parse-id", // Use an appropriate identifier
+      platformLink: "", // Provide if available
+      imageInput: false // Set according to the model's capabilities
+    }
   ]
 
   const groupedModels = allModels.reduce<Record<string, LLM[]>>(
@@ -113,36 +122,30 @@ export const ModelSelect: FC<ModelSelectProps> = ({
         asChild
         disabled={allModels.length === 0}
       >
-        {allModels.length === 0 ? (
-          <div className="rounded text-sm font-bold">
-            Unlock models by entering API keys in your profile settings.
+        <Button
+          ref={triggerRef}
+          className="flex items-center justify-between"
+          variant="ghost"
+        >
+          <div className="flex items-center">
+            {selectedModel ? (
+              <>
+                <ModelIcon
+                  provider={selectedModel?.provider}
+                  width={26}
+                  height={26}
+                />
+                <div className="ml-2 flex items-center">
+                  {selectedModel?.modelName}
+                </div>
+              </>
+            ) : (
+              <div className="flex items-center">Select a model</div>
+            )}
           </div>
-        ) : (
-          <Button
-            ref={triggerRef}
-            className="flex items-center justify-between"
-            variant="ghost"
-          >
-            <div className="flex items-center">
-              {selectedModel ? (
-                <>
-                  <ModelIcon
-                    provider={selectedModel?.provider}
-                    width={26}
-                    height={26}
-                  />
-                  <div className="ml-2 flex items-center">
-                    {selectedModel?.modelName}
-                  </div>
-                </>
-              ) : (
-                <div className="flex items-center">Select a model</div>
-              )}
-            </div>
 
-            <IconChevronDown />
-          </Button>
-        )}
+          <IconChevronDown />
+        </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent

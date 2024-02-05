@@ -57,6 +57,9 @@ export const GlobalState: FC<GlobalStateProps> = ({ children }) => {
   const [availableOpenRouterModels, setAvailableOpenRouterModels] = useState<
     OpenRouterLLM[]
   >([])
+  const [availableLLamaIndexModels, setAvailableLLamaIndexModels] = useState<
+    LLM[]
+  >([])
 
   // WORKSPACE STORE
   const [selectedWorkspace, setSelectedWorkspace] =
@@ -138,6 +141,20 @@ export const GlobalState: FC<GlobalStateProps> = ({ children }) => {
           const openRouterModels = await fetchOpenRouterModels()
           if (!openRouterModels) return
           setAvailableOpenRouterModels(openRouterModels)
+        }
+
+        // Check if profile has a llama_index_api_key and is not null
+        if (profile["llama_index_api_key"]) {
+          setAvailableLLamaIndexModels([
+            {
+              modelId: "LLAMA-Parse",
+              modelName: "LLAMA Parse",
+              provider: "LLAMAIndex",
+              hostedId: "llama-parse-id",
+              platformLink: "",
+              imageInput: false
+            }
+          ])
         }
       }
 
